@@ -8,7 +8,7 @@ class Q extends Model
 {
 
     protected $table = "q_s";
-    public $timestamps = false;
+    //public $timestamps = false;
 
     protected $fillable = [
 

@@ -8,6 +8,7 @@ use App\Course;
 use Stripe\Product;
 use Stripe\Plan;
 use App\video;
+use DB;
 
 \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
 
@@ -44,18 +45,18 @@ class CourseController extends Controller
             'rating' => $rating,
             'category' => $category,
             'price' => $price,
-            'product_id' => 'sara_2222244',
-            'plan_id' => 'plan_2222244'
+            'product_id' => 'sara_2222gg2',
+            'plan_id' => 'plan_2222gg2'
         ]);
         $plan = Plan::create([
             'amount' => $price,
             'currency' => 'usd',
             'interval' => 'month',
-            'id' => 'plan_2222244',
+            'id' => 'plan_2222gg2',
             'product' => [
                 'name' => $title,
                 'type' => 'service',
-                'id' => 'sara_2222244'
+                'id' => 'sara_2222gg2'
             ],
         ]);
         return response()->json($plan, 201);
@@ -139,7 +140,13 @@ class CourseController extends Controller
         return response()->json($videos);
     }
 
-
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        //$Course = DB::table('courses')->where('title', 'like', '%'.$search.'%');
+        $Course = Course::where('title', 'like', '%'.$search.'%')->get();
+        return response()->json($Course);
+    }
 
 
 }

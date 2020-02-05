@@ -42,4 +42,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(Q::class);
     }
+
+    public function Teacher()
+    {
+        return $this->hasMany(Teacher::class);
+    }
+    public function Card()
+    {
+        return $this->hasMany(Card::class);
+    }
 }
